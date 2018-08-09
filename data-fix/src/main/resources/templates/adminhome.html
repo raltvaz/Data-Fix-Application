@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Admin Home</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- <span th:utext="${welcome}"></span> -->
+   <h1>LIST OF CURRENT USERS IN DATABASE: </h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Name</h3>
+			</div>
+			<div class="col-sm-4">
+				<h3>Email</h3>
+			</div>
+		</div>
+		
+		<div class="row" th:each="user,iterStat : ${users}">
+			<div class="col-sm-4">
+				<div> <a th:class="text-info" th:text="${user.name}"></a> </div>
+			</div>
+			<div class="col-sm-4">
+				<div th:text="${user.email}" class="mb-2 mr-sm-2"></div>
+			</div> 
+			<a th:href="@{/edit-user-${user.id}}"> <button type="button" class = "btn btn-primary"> Edit User</button> </a>
+			<a th:href="@{/delete-user-${user.id}}"> <button type="button" class = "btn btn-primary"> Delete User</button> </a>
+		</div>		
+		
+	</div>
+	
+	<a th:href="@{/logoutButton}">Logout</a>
+
+</body>
+
+</html>
